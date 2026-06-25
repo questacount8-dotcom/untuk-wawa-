@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Untuk Wawaa ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{overflow:hidden;background:linear-gradient(#05051b,#1d1147,#090b22);font-family:Segoe UI,sans-serif;color:#fff}
+#sky,#hearts,#fireworks{position:fixed;inset:0;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{to{opacity:.2;transform:scale(.4)}}
+.heart{position:absolute;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh);opacity:0}}
+.wrap{display:flex;justify-content:center;align-items:center;height:100vh;padding:20px}
+.card{max-width:760px;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:25px;padding:40px;text-align:center;box-shadow:0 0 30px rgba(255,0,180,.2)}
+h1{font-size:clamp(2rem,5vw,3.3rem);margin-bottom:20px}
+p{font-size:1.25rem;line-height:1.8;min-height:120px}
+button{margin-top:25px;padding:14px 35px;border:none;border-radius:50px;background:#ff4fa3;color:#fff;font-size:1.1rem;cursor:pointer;box-shadow:0 0 20px #ff4fa3}
+button:hover{transform:scale(1.05)}
+</style></head><body>
+<audio autoplay loop><source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b7db5f0cf.mp3?filename=romantic-piano-112191.mp3"></audio>
+<div id="sky"></div><div id="hearts"></div><canvas id="fireworks"></canvas>
+<div class="wrap"><div class="card"><h1 id="title"></h1><p id="text"></p><button id="btn" onclick="next()">Lanjut ❤️</button></div></div>
+<script>
+const slides=[
+["Hai Wawaa ❤️","Ada sesuatu yang ingin Mas sampaikan..."],
+["Terima Kasih 🌙","Terima kasih karena sudah hadir dan membuat hari-hari Mas menjadi lebih indah."],
+["Untuk Kamu 💜","Setiap senyummu selalu berhasil membuat Mas merasa tenang dan bahagia."],
+["Harapan ✨","Semoga kita selalu saling menguatkan, saling percaya, dan terus berjalan bersama apa pun yang terjadi."],
+["Janji ❤️","Mas mungkin tidak sempurna, tapi Mas akan selalu berusaha menjadi seseorang yang bisa membuatmu tersenyum."],
+["I Love You ❤️","Mas sayang banget sama Wawaa.<br><br>Terima kasih sudah menjadi bagian terindah dalam hidup Mas."],
+["Selamanya 💍","Semoga cerita kita terus berlanjut.<br><br><b>I LOVE YOU WAWAA ❤️</b><br><br><span style='font-size:22px'>— Adii ❤️ —</span>"]
+];
+let i=0,t=document.getElementById("title"),p=document.getElementById("text"),b=document.getElementById("btn");
+function type(el,txt,cb){el.innerHTML="";let n=0;let id=setInterval(()=>{el.innerHTML=txt.slice(0,++n);if(n>=txt.length){clearInterval(id);cb&&cb()}},25)}
+function show(){type(t,slides[i][0],()=>type(p,slides[i][1]));if(i==slides.length-1){b.style.display="none";boom()}}
+function next(){if(i<slides.length-1){i++;show()}}
+show();
+for(let s=0;s<220;s++){let d=document.createElement("div");d.className="star";d.style.left=Math.random()*100+"%";d.style.top=Math.random()*100+"%";d.style.animationDuration=(1+Math.random()*3)+"s";document.getElementById("sky").appendChild(d);}
+setInterval(()=>{let h=document.createElement("div");h.className="heart";h.innerHTML=Math.random()>.5?"💜":"❤️";h.style.left=Math.random()*100+"%";h.style.top="-30px";h.style.fontSize=(18+Math.random()*25)+"px";let dur=5+Math.random()*5;h.style.animationDuration=dur+"s";document.getElementById("hearts").appendChild(h);setTimeout(()=>h.remove(),dur*1000)},250);
+const c=document.getElementById("fireworks"),x=c.getContext("2d");function rs(){c.width=innerWidth;c.height=innerHeight}rs();onresize=rs;
+function boom(){setInterval(()=>{let X=Math.random()*c.width,Y=Math.random()*c.height/2;for(let k=0;k<40;k++){let a=Math.random()*6.28,s=Math.random()*4+2,l=0;(function anim(){if(l>50)return;let px=X+Math.cos(a)*s*l,py=Y+Math.sin(a)*s*l;x.fillStyle=`hsl(${Math.random()*360},100%,70%)`;x.fillRect(px,py,3,3);l++;requestAnimationFrame(anim)})();}setTimeout(()=>x.clearRect(0,0,c.width,c.height),700)},900)}
+</script></body></html>
